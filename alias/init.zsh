@@ -32,7 +32,10 @@ alias tree='tree -I node_modules'
 alias tman='tmux splitw -h -p 30 man'
 alias side='tmux splitw -fh -p 40'
 
-alias j='fasd_cd -d'
+function j() {
+  dest=$(fasd -d $1)
+  cd $dest
+}
 
 alias groot='cd $(git rev-parse --show-toplevel)'
 alias gds='git diff --staged'
