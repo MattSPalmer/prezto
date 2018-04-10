@@ -1,13 +1,53 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+# Aliases
+
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/alias/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/alias/init.zsh"
+fi
+
+# FZF
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FZF_DEFAULT_COMMAND='fd'
+export FZF_COMPLETION_TRIGGER=''
+bindkey '^P' fzf-completion
+bindkey '^I' $fzf_default_completion
+
+_fzf_compgen_path() {
+  rg --files "$1" | with-dir "$1"
+}
+
+_fzf_compgen_dir() {
+  rg --files "$1" | only-dir "$1"
+}
+
+# Golang
+
+export GOPATH="$HOME/code/go"
+export GOBIN="$GOPATH/bin"
+export GOROOT="/s/homebrew/opt/go/libexec"
+
+# PATH
+
+export PATH=$HOME/Library/Haskell/bin:$PATH
+export PATH=/s/homebrew/bin:$HOME/bin:/usr/local/bin:$PATH
+export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
+export PATH="$HOME/.yarn/bin:$PATH"
+
+# nvm
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# rvm
+
+# # Add RVM to PATH for scripting. This must be the last PATH variable change.
+# export PATH="$HOME/.rvm/bin:$PATH"
+# source $HOME/.rvm/scripts/rvm

@@ -1,12 +1,3 @@
-#
-# Defines Ruby on Rails aliases.
-#
-# Authors:
-#   Robby Russell <robby@planetargon.com>
-#   Jake Bell <jake.b.bell@gmail.com>
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # Load dependencies.
 pmodload 'ruby'
 
