@@ -257,6 +257,7 @@ if ! zstyle -t ':prezto:module:git:alias' skip 'yes'; then
   alias gtl='git tag -l'
 
   # Working Copy (w)
+  alias gst='git status'
   alias gws='git status --ignore-submodules=${_git_status_ignore_submodules} --short'
   alias gwS='git status --ignore-submodules=${_git_status_ignore_submodules}'
   alias gwd='git diff --no-ext-diff'
@@ -268,3 +269,26 @@ if ! zstyle -t ':prezto:module:git:alias' skip 'yes'; then
   alias gwx='git rm -r'
   alias gwX='git rm -rf'
 fi
+
+
+# Custom
+alias gd='git diff'
+alias gds='git diff --staged'
+alias ga='git add'
+
+alias untracked='git ls-files --others --exclude-standard'
+alias mine='gco `fmb`'
+alias all='gco `fbr`'
+
+alias mas='gco master'
+alias das='gco -'
+
+alias this_branch='git rev-parse --abbrev-ref HEAD'
+alias rebi='git rebase -i'
+alias rebmas='rebi master'
+alias rebdas='rebi -'
+
+alias groot='cd $(git rev-parse --show-toplevel)'
+
+alias wip='git add . && git commit -m "WIP"'
+alias unwip='git reset HEAD~'

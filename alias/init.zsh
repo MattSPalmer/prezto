@@ -1,17 +1,3 @@
-alias untracked='git ls-files --others --exclude-standard'
-alias mine='gco `fmb`'
-alias all='gco `fbr`'
-
-alias mas='gco master'
-alias das='gco -'
-
-alias rebi='git rebase -i'
-alias rebmas='rebi master'
-alias rebdas='rebi -'
-
-alias gdt='git diff --stat'
-alias gdst='git diff --staged --stat'
-
 alias ,.='open .'
 
 alias ttig='tmux splitw -bd -p 40 tig'
@@ -20,7 +6,6 @@ alias attach='tmux attach -t'
 alias top='tmux splitw -bf -p 40'
 
 alias gptag='git pull && ctags -R --languages=ruby --exclude=.git --exclude=log --exclude=vendor . $(bundle list --paths)'
-
 
 alias bi='bundle install'
 alias md='mkdir'
@@ -36,12 +21,6 @@ function j() {
   dest=$(fasd -d $1)
   cd $dest
 }
-
-alias groot='cd $(git rev-parse --show-toplevel)'
-alias gds='git diff --staged'
-
-alias wip='ga . && gc -m "WIP"'
-alias unwip='git reset HEAD~'
 
 # Push and pop directories on directory stack
 alias pu='pushd'
@@ -100,9 +79,3 @@ alias zshconfig='vim ~/.zshrc'
 
 # python
 alias ipython3='python3 -m IPython'
-
-# git aliases
-alias gr='git reset'
-alias stashout='git stash && git checkout'
-# alias gsha='git log --format=format:%H'
-alias this_branch='git rev-parse --abbrev-ref HEAD'
