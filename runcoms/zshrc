@@ -42,5 +42,5 @@ export PATH="$HOME/.yarn/bin:$PATH"
 # rvm
 
 # # Add RVM to PATH for scripting. This must be the last PATH variable change.
-# export PATH="$HOME/.rvm/bin:$PATH"
-# source $HOME/.rvm/scripts/rvm
+export PATH="$HOME/.rvm/bin:$PATH"
+source $HOME/.rvm/scripts/rvm
