@@ -1,3 +1,5 @@
+load_module "${0:h}/git.zsh"
+
 # fns
 bot() {
   npm run test -- --path=$1
