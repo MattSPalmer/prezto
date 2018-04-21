@@ -1,13 +1,15 @@
+load_toplevel_module() {
+  if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/$1" ]]; then
+    source "${ZDOTDIR:-$HOME}/.zprezto/$1"
+  else
+    echo "Could not load module '$1'"
+  fi
+}
+
 # Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+load_toplevel_module 'init.zsh'
 
-# Aliases
-
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/alias/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/alias/init.zsh"
-fi
+load_toplevel_module 'alias/init.zsh'
 
 # FZF
 
