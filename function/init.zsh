@@ -2,11 +2,11 @@ load_module "${0:h}/git.zsh"
 
 # fns
 bot() {
-  npm run test -- --path=$1
+  npm run test -- --silent --path=$1
 }
 
 botw() {
-  npm run test -- --watch --path=$1
+  npm run test -- --silent --watch --path=$1
 }
 
 function _open_results_in_tabs() {
