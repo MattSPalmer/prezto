@@ -10,6 +10,8 @@ alias gptag='git pull && ctags -R --languages=ruby --exclude=.git --exclude=log 
 alias bi='bundle install'
 alias md='mkdir'
 
+alias gimme='gim'
+
 # ==================
 
 alias tree='tree -I node_modules'
