@@ -17,6 +17,11 @@ function _open_results_in_tabs() {
   return 1
 }
 
+function fzp() {
+  selection=$(fd '' $HOME/.zprezto | fzf -m)
+  _open_results_in_tabs $selection
+}
+
 function gim() {
   results=$(rg -l ${@:1})
   if [[ ! $results ]]; then
