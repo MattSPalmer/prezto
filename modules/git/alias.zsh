@@ -291,5 +291,7 @@ alias rebdas='rebi -'
 
 alias groot='cd $(git rev-parse --show-toplevel)'
 
+alias grh='git reset HEAD'
+
 alias wip='git add . && git commit -m "WIP"'
 alias unwip='git reset HEAD~'
