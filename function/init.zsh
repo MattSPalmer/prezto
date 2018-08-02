@@ -2,11 +2,11 @@ load_module "${0:h}/git.zsh"
 
 # fns
 bot() {
-  npm run test -- --silent --path=$1
+  npm run test -- $1
 }
 
 botw() {
-  npm run test -- --silent --watch --path=$1
+  npm run test -- --watch $1
 }
 
 function _open_results_in_tabs() {
@@ -30,4 +30,19 @@ function gim() {
 
   selection=$(echo $results | fzf)
   _open_results_in_tabs $selection
+}
+
+function j() {
+  dest=$(fasd -d $1)
+  if [[ ! $dest ]]; then
+    return 1
+  fi
+  cd $dest
+}
+
+function id() {
+  for arg in "$@"; do
+    md -p $arg
+    touch $arg/index.js
+  done
 }

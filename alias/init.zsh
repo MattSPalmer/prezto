@@ -19,11 +19,6 @@ alias tree='tree -I node_modules'
 alias tman='tmux splitw -h -p 30 man'
 alias side='tmux splitw -fh -p 40'
 
-function j() {
-  dest=$(fasd -d $1)
-  cd $dest
-}
-
 # Push and pop directories on directory stack
 alias pu='pushd'
 alias po='popd'
@@ -81,3 +76,6 @@ alias zshconfig='vim ~/.zshrc'
 
 # python
 alias ipython3='python3 -m IPython'
+
+alias next='gco `git log --reverse --ancestry-path HEAD..master --format=%H | head -1`'
+alias back='gco HEAD~'
