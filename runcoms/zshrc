@@ -20,8 +20,6 @@ load_toplevel_module 'function/init.zsh'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export FZF_DEFAULT_COMMAND='fd -t f'
-export FZF_COMPLETION_TRIGGER=''
 bindkey '^P' fzf-completion
 bindkey '^I' $fzf_default_completion
 
@@ -33,23 +31,8 @@ _fzf_compgen_dir() {
   rg --files "$1" | only-dir "$1"
 }
 
-# Golang
+eval "$(fasd --init auto)"
 
-export GOPATH="$HOME/code/go"
-export GOBIN="$GOPATH/bin"
-export GOROOT="/s/homebrew/opt/go/libexec"
-
-# PATH
-
-export PATH=/usr/local/opt/qt@5.5/bin:$PATH
-export PATH=$HOME/Library/Haskell/bin:$PATH
-export PATH=/s/homebrew/bin:$HOME/bin:/usr/local/bin:$PATH
-export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
-export PATH="$HOME/.yarn/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# rvm
-
-# # Add RVM to PATH for scripting. This must be the last PATH variable change.
-export PATH="$HOME/.rvm/bin:$PATH"
-source $HOME/.rvm/scripts/rvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
