@@ -1,3 +1,6 @@
+load_module "${0:h}/fasd.zsh"
+
+alias cat='bat'
 alias ,.='open .'
 
 alias ttig='tmux splitw -bd -p 40 tig'

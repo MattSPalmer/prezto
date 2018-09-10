@@ -1,5 +1,10 @@
 load_module "${0:h}/git.zsh"
 
+take() {
+  nocorrect mkdir -p $1
+  cd $1
+}
+
 # fns
 bot() {
   npm run test -- $1
@@ -32,17 +37,11 @@ function gim() {
   _open_results_in_tabs $selection
 }
 
-function j() {
-  dest=$(fasd -d $1)
-  if [[ ! $dest ]]; then
-    return 1
-  fi
-  cd $dest
-}
-
-function id() {
+function initdir() {
   for arg in "$@"; do
-    md -p $arg
+    nocorrect mkdir -p $arg
     touch $arg/index.js
   done
 }
+
+alias idi='initdir'
