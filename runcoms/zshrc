@@ -31,6 +31,7 @@ _fzf_compgen_dir() {
   rg --files "$1" | only-dir "$1"
 }
 
+eval "$(pyenv init -)"
 eval "$(fasd --init auto)"
 
 # export NVM_DIR="$HOME/.nvm"
