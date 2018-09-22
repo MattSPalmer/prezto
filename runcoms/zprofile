@@ -36,7 +36,71 @@ fi
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
 
+# path=(
+#   $path:$home/.rvm/bin
+#   /usr/local/{bin,sbin}
+#   $path
+# )
+
+# RVM
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
 # Set the list of directories that cd searches.
 # cdpath=(
 #   $cdpath
 # )
+
+export VAULT_TEAM="stepreckon"
+
+aws-envs() {
+    environment=$1
+    team=$VAULT_TEAM
+
+    vault-envs-$environment
+
+    secrets=$(vault write aws-$environment/sts/$team ttl=43200s)
+
+    access_key=$(echo "${secrets%x}" | grep access_key | awk '{print $2}')
+    secret_key=$(echo "${secrets%x}" | grep secret_key | awk '{print $2}')
+    security_token=$(echo "${secrets%x}" | grep security_token | awk '{print $2}')
+
+    export AWS_ACCESS_KEY_ID=$access_key
+    export AWS_SECRET_ACCESS_KEY=$secret_key
+    export AWS_SESSION_TOKEN=$security_token
+
+    echo "AWS $environment ENVs set"
+}
+
+vault-envs-sandbox() {
+    export VAULT_ADDR=https://cfn-vault-serenity-consul-stage-us-east-1.shoppymcshopface.biz:8200
+    vault-github-login
+    echo "Using $VAULT_ADDR"
+}
+
+vault-envs-staging() {
+    export VAULT_ADDR=https://cfn-vault-serenity-consul-stage-us-east-1.shoppymcshopface.biz:8200
+    vault-github-login
+    echo "Using $VAULT_ADDR"
+}
+
+vault-envs-production() {
+    export VAULT_ADDR=https://cfn-vault-serenity-consul-prod-us-east-1.posrip.com:8200
+    vault-github-login
+    echo "Using $VAULT_ADDR"
+}
+
+vault-envs-mspp() {
+  export VAULT_ADDR=https://cfn-vault-serenity-consul-prod-us-east-1.posrip.com:8200
+  vault-github-login
+  echo "Using $VAULT_ADDR"
+}
+
+vault-envs-ambur() {
+  export VAULT_ADDR=https://cfn-vault-serenity-consul-prod-us-east-1.posrip.com:8200
+  vault-github-login
+  echo "Using $VAULT_ADDR"
+}
+
+vault-github-login() {
+    export VAULT_TOKEN=$(vault login -field=token -no-store -method=github token=$GITHUB_TOKEN 2>/dev/null)
+}
