@@ -1,5 +1,7 @@
 load_module "${0:h}/fasd.zsh"
 
+alias x='tmux'
+
 alias cat='bat'
 alias ,.='open .'
 

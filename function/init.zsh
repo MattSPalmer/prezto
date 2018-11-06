@@ -7,11 +7,11 @@ take() {
 
 # fns
 bot() {
-  npm run test -- $1
+  npm run test -- $@
 }
 
 botw() {
-  npm run test -- --watch $1
+  npm run test -- --watch $@
 }
 
 function _open_results_in_tabs() {
@@ -22,9 +22,13 @@ function _open_results_in_tabs() {
   return 1
 }
 
+function _select_args() {
+  echo $1 | fzf -m
+}
+
 function fzp() {
-  selection=$(fd '' $HOME/.zprezto | fzf -m)
-  _open_results_in_tabs $selection
+  candidates=$(fd '' $HOME/.zprezto)
+  _open_results_in_tabs $(_select_args $candidates)
 }
 
 function gim() {
@@ -32,9 +36,7 @@ function gim() {
   if [[ ! $results ]]; then
     return 1
   fi
-
-  selection=$(echo $results | fzf)
-  _open_results_in_tabs $selection
+  _open_results_in_tabs $(_select_args $results)
 }
 
 function initdir() {
