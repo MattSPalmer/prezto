@@ -1,4 +1,5 @@
 load_module "${0:h}/fasd.zsh"
+load_module "${0:h}/docker.zsh"
 
 alias x='tmux'
 
